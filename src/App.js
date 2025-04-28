@@ -13,20 +13,26 @@ import Discover from './reuse/Discover';
 import Login from './components/Login';
 import Footer from './components/Footer';
 
+import ContextState from './context/ContextState';
+import Cart from './components/Cart';
+
 function App() {
     return (
-        <HashRouter>
-            <Header />
-            <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/about' element={<About />} />
-                <Route path='/menu' element={<Menu />} />
-                <Route path='/discover' element={<Discover />} />
-                <Route path='/book-table' element={<BookTable />} />
-                <Route path='/login' element={<Login />} />
-            </Routes>
-            <Footer />
-        </HashRouter>
+        <ContextState>
+            <HashRouter>
+                <Header />
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/about' element={<About />} />
+                    <Route path='/menu' element={<Menu />} />
+                    <Route path='/discover' element={<Discover />} />
+                    <Route path='/book-table' element={<BookTable />} />
+                    <Route path='/cart' element={<Cart />} />
+                    <Route path='/login' element={<Login />} />
+                </Routes>
+                <Footer />
+            </HashRouter>
+        </ContextState>
     );
 }
 

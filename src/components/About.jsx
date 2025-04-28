@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const About = () => {
     const location = useLocation();
 
     useEffect(() => {
+        window.scrollTo(0, 0);
     }, [location.pathname]);
 
     return (
@@ -17,7 +18,7 @@ const About = () => {
                         <div className="">
                             <h1 className="text-3xl sm:text-5xl dancing mb-3">We Are Feane</h1>
                             <p className="text-xs sm:text-[18px] sm:leading-snug">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All</p>
-                            <Link to="/about"><button type="button" className='text-xs sm:text-[18px] bg-yellow-500 hover:bg-yellow-700 px-4 py-3 mt-5 w-40 rounded-3xl transition-all'>View More</button></Link>
+                            <Link to="/about"><button type="button" className='text-xs sm:text-[18px] bg-yellow-500 hover:bg-yellow-700 px-4 py-3 mt-5 w-40 rounded-3xl transition-all'>About Us</button></Link>
                         </div>
                     </div>
                 </div>

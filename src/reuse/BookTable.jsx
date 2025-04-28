@@ -9,15 +9,16 @@ const BookTable = () => {
 
     const bookTable = (e) => {
         e.preventDefault();
-
+        
         setLoad("block");
         setTimeout(() => {
             setLoad("hidden");
             booked.current.innerText = "Table booked!";
-
+            console.log(window.document.getElementsByTagName("form")[0].reset());
+            
             setTimeout(() => {
                 booked.current.innerText = "Book Table again!";
-            }, 5000);
+                }, 5000);
         }, 2000);
     }
 
@@ -26,7 +27,7 @@ const BookTable = () => {
 
     return (
         <>
-            <div className={`text-white ${location.pathname === '/' ? 'pt-20 pb-28 sm:py-20 px-5' : 'pt-20 pb-28 sm:py-20 md:py-40 px-5'}`}>
+            <div className={`poppins text-white ${location.pathname === '/' ? 'pt-20 pb-28 sm:py-20 px-5' : 'pt-20 pb-28 sm:py-20 md:py-40 px-5'}`}>
                 <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
                     <form onSubmit={bookTable} className="">
                         <h1 className="dancing text-3xl sm:text-5xl mb-5">Book A Table</h1>
@@ -56,7 +57,7 @@ const BookTable = () => {
                         <div className="grid md:grid-cols-2 md:gap-6">
                             <div className="relative z-0 w-full mb-5 group">
                                 <input type="tel" /* pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" */ name="floating_phone" id="floating_phone" className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                                <label htmlFor="floating_phone" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number (+91 9876543210)</label>
+                                <label htmlFor="floating_phone" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Contact (+91 9876543210)</label>
                             </div>
                             <div className="relative z-0 w-full mb-5 group">
                                 <input type="date" name="date" id="date" className="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-white focus:outline-none focus:ring-0 focus:border-blue-600 peer" required />
@@ -64,9 +65,9 @@ const BookTable = () => {
                                 <span className='absolute top-2 right-0 -z-10 text-slate-300'><Icon icon="uil:calender" width="22" height="22"></Icon></span>
                             </div>
                         </div>
-                        <button type="submit" className="text-white mt-5 bg-yellow-600 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm w-full sm:w-1/2 px-5 py-3 text-center">
+                        <button type="submit" className="text-white mt-5 bg-yellow-600 hover:bg-yellow-800 focus:ring-2 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm w-full sm:w-1/2 px-5 py-3 text-center">
                             <span ref={booked} className={`${load !== "hidden" ? "hidden" : "block"}`}>Book Table</span>
-                            <span className={`${load}`}>
+                            <span className={`${load} w-full flex justify-center items-center`}>
                                 <Icon icon="svg-spinners:ring-resize" width="24" height="24"></Icon>
                             </span>
                         </button>

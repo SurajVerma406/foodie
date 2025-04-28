@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Slider from "react-slick";
 import { Link } from 'react-router-dom';
 
@@ -12,19 +12,10 @@ const Burger = () => {
         infinite: true,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 7000, // 7 seconds
     };
-
-    const btnClickAuto = () => {
-        const btn = document.querySelector('.slick-next');
-        setInterval(() => {
-            btn.click();
-        }, 7000);
-    }
-
-    useEffect(() => {
-        btnClickAuto();
-    }, [])
 
     return (
         <>
@@ -53,21 +44,17 @@ const Burger = () => {
 
 export default Burger
 
-
-
-
 const restaurant = [
     {
-        "name": "Fast Food Restaurant",
-        "description": "Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam."
+        "name": "Food Delivered Fast",
+        "description": "Order your favorite meals online from top restaurants near you. Fast delivery, easy payments, and delicious food in just a few clicks away."
     },
     {
-        "name": "Fast Food Restaurant",
-        "description": "Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam."
+        "name": "Crave. Click. Eat",
+        "description": "Craving something tasty? Browse menus, pick your favorites, and get hot, fresh food delivered right to your doorstep. Yum made easy!"
     },
     {
-        "name": "Fast Food Restaurant",
-        "description": "Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam."
+        "name": "Your Hunger, Our Priority",
+        "description": "A seamless food ordering experience—discover top-rated restaurants, track your order live, and enjoy fast, reliable delivery, anytime, anywhere."
     }
 ]
-

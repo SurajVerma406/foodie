@@ -14,7 +14,6 @@
     box-sizing: border-box;
 }
 
-
 .poppins {
     font-family: "Poppins", sans-serif;
 }
@@ -36,7 +35,7 @@ body {
 }
 
 .bg-burger {
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('Images/bg/hero-bg.jpg') no-repeat center center/cover;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url('Images/bg/hero-bg.jpg') no-repeat center center/cover;
 }
 
 .bg-sweetHouse {
@@ -44,7 +43,7 @@ body {
 }
 
 .bg-pizza {
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), url('/src/Images/bg/fresco-pizza-top.jpg') no-repeat 50% center/cover;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url('/src/Images/bg/photo-1543353071-10c8ba85a904.jpeg') no-repeat 50% center/cover;
 }
 
 .menuDiv:hover img {
@@ -87,7 +86,7 @@ button.slick-arrow.slick-prev {
     }
 
     .bg-pizza {
-        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), url('/src/Images/bg/fresco-pizza-top.jpg') no-repeat 100% center/cover;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url('/src/Images/bg/photo-1543353071-10c8ba85a904.jpeg') no-repeat 100% center/cover;
     }
 }
 

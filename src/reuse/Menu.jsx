@@ -1,8 +1,13 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
-import React, { useEffect, useState } from 'react';
+
 import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import myContext from '../context/myContext';
 
 const Menu = () => {
+    const context = useContext(myContext);
+    const { cart, addMenu, removeFromCart } = context;
+
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -34,10 +39,8 @@ const Menu = () => {
     }
 
     useEffect(() => {
-        if (location.pathname === "/menu") {
-            window.scrollTo(0, 0);
-        }
-    }, [location.pathname]);
+        // if (location.pathname === "/menu") {window.scrollTo(0, 0);}
+    }, [location.pathname, cart]);
 
     return (
         <section className={`text-white ${location.pathname === '/' ? 'py-20 px-5' : 'py-20 md:py-40 px-5'}`}>
@@ -53,23 +56,31 @@ const Menu = () => {
 
             <div className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
-                    menu.filter((menu) => {
+                    menu?.filter((menu) => {
                         return (
                             category === 'All' || menu.heading.includes(category))
                     }).slice(0, location.pathname !== "/menu" ? 6 : menu.length).map((menu, index) => {
                         return (
-                            <div key={index} className="rounded-2xl overflow-hidden bg-[#222831]">
+                            <div key={index} className="border border-transparent rounded-2xl overflow-hidden bg-[#222831] h-full">
                                 <div className="menuDiv bg-slate-600 h-60 w-full flex justify-center items-center rounded-es-[45px] rounded-ee-[45px]">
                                     <img className='w-44 transition-all select-none' src={menu.image} alt={menu.heading} />
                                 </div>
-                                <div className="p-5">
-                                    <h1 className="text-[18px] sm:text-[20px] mb-2 select-none font-semibold">{menu.heading}</h1>
-                                    <p className="text-xs sm:text-[15px] sm:leading-snug select-none text-neutral-300">{menu.para}</p>
+                                <div className="flex flex-col justify-between p-5 h-fit sm:h-[12rem]">
+                                    <div className="">
+                                        <h1 className="text-[18px] sm:text-[20px] mb-2 select-none font-semibold">{menu.heading}</h1>
+                                        <p className="text-xs sm:text-[15px] sm:leading-snug select-none text-neutral-300">{menu.para}</p>
+                                    </div>
+
                                     <div className="flex justify-between menus-center mt-6">
-                                        <span className="text-[18px]">{menu.price}</span>
-                                        <span className='bg-yellow-700 hover:bg-yellow-700 p-2 rounded-md hover:scale-110 active:scale-100'>
-                                            <Icon icon="mdi:trolley" width="18" height="18" />
+                                        <span className="text-[18px] md:text-[22px] font-semibold">${menu.price}</span>
+                                        <span onClick={() => { (cart.find(item => item.heading === menu.heading)) ? removeFromCart(menu) : addMenu(menu); }} className='flex gap-1 p-2 rounded-md hover:scale-110'>
+                                            {
+                                                cart.find(item => item.heading === menu.heading) ?
+                                                    <span className="text-white"><Icon icon="gg:remove" width="22" height="22" /></span> :
+                                                    <span className="text-yellow-600"><Icon icon="gg:add" width="22" height="22" /></span>
+                                            }
                                         </span>
+
                                     </div>
                                 </div>
                             </div>
@@ -95,165 +106,165 @@ export default Menu;
 const menu = [
     {
         heading: 'Cheese Pizza',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Loaded with rich mozzarella and a crispy base, perfect for cheese lovers.',
         image: require("../Images/menu/f1.png"),
-        price: '$20'
+        price: '12'
     },
     {
         heading: 'Veggie Burger',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'A healthy mix of fresh veggies and sauces packed in a soft bun.',
         image: require("../Images/menu/f2.png"),
-        price: '$15'
+        price: '8'
     },
     {
         heading: 'Crown Crust Pizza',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Special crown crust with cheesy bites on the edges, a royal treat.',
         image: require("../Images/menu/f3.png"),
-        price: '$17'
+        price: '14'
     },
     {
         heading: 'Delicious Pasta',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Creamy and flavorful pasta tossed with herbs and spices.',
         image: require("../Images/menu/f4.png"),
-        price: '$18'
+        price: '11'
     },
     {
         heading: 'French Fries',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Crispy golden fries, perfect companion for any meal.',
         image: require("../Images/menu/f5.png"),
-        price: '$10'
+        price: '5'
     },
     {
         heading: 'Veg Pizza',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Topped with fresh veggies, olives, and a layer of cheese.',
         image: require("../Images/menu/f6.png"),
-        price: '$15'
+        price: '10'
     },
     {
         heading: 'Tasty Burger',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Juicy patty with flavorful sauces, a delight in every bite.',
         image: require("../Images/menu/f7.png"),
-        price: '$12'
+        price: '9'
     },
     {
         heading: 'Chicken Burger',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Tender chicken patty grilled to perfection with spicy mayo.',
         image: require("../Images/menu/f8.png"),
-        price: '$14'
+        price: '13'
     },
     {
         heading: 'Macaroni Pasta',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Classic macaroni in creamy cheese sauce, a comforting meal.',
         image: require("../Images/menu/f9.png"),
-        price: '$10'
+        price: '10'
     },
     {
         heading: 'Tomato Pizza',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Zesty tomato sauce and herbs baked on a soft pizza base.',
         image: require("../Images/menu/f10.png"),
-        price: '$10'
+        price: '11'
     },
     {
         heading: 'Chicken Pizza',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Loaded with spicy chicken chunks and melting cheese.',
         image: require("../Images/menu/f11.png"),
-        price: '$10'
+        price: '15'
     },
     {
         heading: 'Burger King',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'A king-sized burger with double patty and loaded toppings.',
         image: require("../Images/menu/f12.png"),
-        price: '$10'
+        price: '10'
     },
     {
         heading: 'Tasty Beef Burger',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Savory beef patty grilled and served with BBQ sauce.',
         image: require("../Images/menu/f13.png"),
-        price: '$10'
+        price: '16'
     },
     {
         heading: 'Juicy Burger',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Tender and juicy burger that satisfies your cravings.',
         image: require("../Images/menu/f14.png"),
-        price: '$10'
+        price: '12'
     },
     {
         heading: 'Burger',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Classic burger with fresh lettuce, tomato and sauce.',
         image: require("../Images/menu/f15.png"),
-        price: '$10'
+        price: '9'
     },
     {
         heading: 'Veg Burger',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Crispy veggie patty served with mayo and crunchy lettuce.',
         image: require("../Images/menu/f16.png"),
-        price: '$10'
+        price: '8'
     },
     {
         heading: 'Cheese and Chicken Pizza',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'A cheesy explosion topped with spicy chicken chunks.',
         image: require("../Images/menu/f17.png"),
-        price: '$10'
+        price: '16'
     },
     {
         heading: 'Steak Fries',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Thick-cut fries with a crispy outer and soft inside.',
         image: require("../Images/menu/f18.png"),
-        price: '$10'
+        price: '7'
     },
     {
         heading: 'Natural Cut Fries',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Freshly sliced and fried to golden perfection.',
         image: require("../Images/menu/f19.png"),
-        price: '$10'
+        price: '6'
     },
     {
         heading: 'Bacon Onion Pizza',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Smoky bacon and caramelized onions on cheesy crust.',
         image: require("../Images/menu/f20.png"),
-        price: '$10'
+        price: '18'
     },
     {
         heading: 'Delicious Fries',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Simple yet tasty fries with seasoning and crunch.',
         image: require("../Images/menu/f21.png"),
-        price: '$10'
+        price: '6'
     },
     {
         heading: 'Belgian Fries',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Thick Belgian-style fries with a hint of spice.',
         image: require("../Images/menu/f22.png"),
-        price: '$10'
+        price: '7'
     },
     {
         heading: 'Sweet Potato Fries',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Sweet and crispy fries for a unique snack experience.',
         image: require("../Images/menu/f23.png"),
-        price: '$10'
+        price: '8'
     },
     {
         heading: 'Waffle Fries',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Waffle-cut potatoes deep fried till golden brown.',
         image: require("../Images/menu/f24.png"),
-        price: '$10'
+        price: '9'
     },
     {
         heading: 'Shoestring Fries',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Thin, crispy and full of flavor – the perfect munch.',
         image: require("../Images/menu/f25.png"),
-        price: '$10'
+        price: '6'
     },
     {
         heading: 'Veggie Cheese Burger',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Stuffed with veggies and cheese, full of flavor.',
         image: require("../Images/menu/f26.png"),
-        price: '$10'
+        price: '11'
     },
     {
         heading: 'Fried Chicken Burger',
-        para: 'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
+        para: 'Crispy fried chicken with lettuce and tangy sauce.',
         image: require("../Images/menu/f27.webp"),
-        price: '$10'
+        price: '17'
     },
 ];
 
