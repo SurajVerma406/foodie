@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/foodie/static/css/main.a8b45aa7.css",
-    "main.js": "/foodie/static/js/main.6fa09c77.js",
+    "main.css": "/foodie/static/css/main.09344e89.css",
+    "main.js": "/foodie/static/js/main.e5a0d0b3.js",
     "static/js/453.d912f5ce.chunk.js": "/foodie/static/js/453.d912f5ce.chunk.js",
     "static/media/f20.png": "/foodie/static/media/f20.42c2c6e850f2f9191c90.png",
-    "static/media/fresco-pizza-top.jpg": "/foodie/static/media/fresco-pizza-top.fc98b0e5526b441e9595.jpg",
     "static/media/f17.png": "/foodie/static/media/f17.ea26ea0590e94937209a.png",
+    "static/media/photo-1543353071-10c8ba85a904.jpeg": "/foodie/static/media/photo-1543353071-10c8ba85a904.640db9b80843e66f0c7e.jpeg",
     "static/media/dine-out.jpg": "/foodie/static/media/dine-out.1fb2eff601669e4db628.jpg",
     "static/media/f27.webp": "/foodie/static/media/f27.4ecaa3fae05c7fa6c6c2.webp",
     "static/media/f11.png": "/foodie/static/media/f11.088152714973ceead3ab.png",
@@ -55,12 +55,12 @@
     "static/media/slick.ttf": "/foodie/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/foodie/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/foodie/index.html",
-    "main.a8b45aa7.css.map": "/foodie/static/css/main.a8b45aa7.css.map",
-    "main.6fa09c77.js.map": "/foodie/static/js/main.6fa09c77.js.map",
+    "main.09344e89.css.map": "/foodie/static/css/main.09344e89.css.map",
+    "main.e5a0d0b3.js.map": "/foodie/static/js/main.e5a0d0b3.js.map",
     "453.d912f5ce.chunk.js.map": "/foodie/static/js/453.d912f5ce.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a8b45aa7.css",
-    "static/js/main.6fa09c77.js"
+    "static/css/main.09344e89.css",
+    "static/js/main.e5a0d0b3.js"
   ]
 }
