@@ -5,9 +5,9 @@ import myContext from '../context/myContext';
 import account from '../appwrite/appWrieConfig';
 
 const Login = () => {
+    const navigate = useNavigate();
     const context = useContext(myContext);
     const { setUser, Toaster, googleAuth, githubAuth, errorFunc } = context;
-    const navigate = useNavigate();
 
     const [userInfo, setUserInfo] = useState({ email: "", password: "" });
     const [togglePassword, setTogglePassword] = useState(false);

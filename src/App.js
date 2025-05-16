@@ -20,9 +20,9 @@ import Signup from './components/Signup';
 import myContext from './context/myContext';
 
 function App() {
-    const navigate = useNavigate();
     const location = useLocation();
-
+    const navigate = useNavigate();
+    
     const context = useContext(myContext);
     const { user, setUser } = context;
 

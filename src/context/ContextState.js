@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import myContext from './myContext';
 import toast, { Toaster } from 'react-hot-toast';
 import account from '../appwrite/appWrieConfig';
+import { useNavigate } from 'react-router-dom';
 
 const ContextState = (props) => {
+    const navigate = useNavigate();
     const [cart, setCart] = useState(JSON.parse(window.localStorage.getItem("cart")) || {});
     const [user, setUser] = useState(JSON.parse(window.localStorage.getItem("userDetails")) || null);
 
@@ -63,7 +65,7 @@ const ContextState = (props) => {
                 successFunc("Signed out successfully.!");
                 setUser(null);
                 setTimeout(() => {
-                    window.location.href = "/login";
+                    navigate("/login");
                 }, 1500);
             }
         } catch (error) {
@@ -75,7 +77,7 @@ const ContextState = (props) => {
     // Google Auth
     const googleAuth = async () => {
         try {
-            await account.createOAuth2Session("google", "http://localhost:3000", "http://localhost:3000/login");
+            await account.createOAuth2Session("google", "https://surajverma406.github.io/foodie", "https://surajverma406.github.io/foodie/login");
         } catch (error) {
             console.error(error.message);
             errorFunc("Login failed. Please try again.!");
@@ -85,7 +87,7 @@ const ContextState = (props) => {
     // GitHub Auth
     const githubAuth = async () => {
         try {
-            await account.createOAuth2Session("github", "http://localhost:3000", "http://localhost:3000/login");
+            await account.createOAuth2Session("github", "https://surajverma406.github.io/foodie", "https://surajverma406.github.io/foodie/login");
         } catch (error) {
             console.error(error.message);
             errorFunc("Login failed. Please try again.!");
@@ -102,7 +104,7 @@ const ContextState = (props) => {
             cart, user,
             setUser,
             addIntoCart, removeAllItemsFromCart, removeFromCart,
-            googleAuth, githubAuth, logout,
+            googleAuth, githubAuth, logout, navigate,
             successFunc, errorFunc
         }}>
             {props.children}

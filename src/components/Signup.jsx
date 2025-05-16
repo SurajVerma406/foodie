@@ -6,10 +6,10 @@ import account from '../appwrite/appWrieConfig';
 import { ID } from 'appwrite';
 
 const Signup = () => {
+    const navigate = useNavigate();
     const context = useContext(myContext);
     const { setUser, Toaster, errorFunc, googleAuth, githubAuth } = context;
 
-    const navigate = useNavigate();
     const [togglePassword, setTogglePassword] = useState(false);
     const [userInfo, setUserInfo] = useState({ name: "", email: "", password: "" });
 

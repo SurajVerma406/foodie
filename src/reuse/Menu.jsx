@@ -5,11 +5,11 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 import myContext from '../context/myContext';
 
 const Menu = () => {
-    const context = useContext(myContext);
-    const { cart, addIntoCart, removeFromCart, user } = context;
-
     const navigate = useNavigate();
     const location = useLocation();
+
+    const context = useContext(myContext);
+    const { cart, addIntoCart, removeFromCart, user } = context;
 
     const [category, setCategory] = useState('All');
     const [load, setLoad] = useState("hidden");
@@ -40,7 +40,7 @@ const Menu = () => {
 
     const userCart = cart[user?.$id] || [];
 
-    useEffect(() => {}, [location.pathname, cart]);
+    useEffect(() => { }, [location.pathname, cart]);
 
     return (
         <section className={`text-white ${location.pathname === '/' ? 'py-20 px-5' : 'py-20 md:py-40 px-5'}`}>
