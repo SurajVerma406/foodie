@@ -1,0 +1,29 @@
+[33mcommit b38155295e119dcaadc441ad590f7be451e9eeb9[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Suraj Verma <iamsuraj406@gmail.com>
+Date:   Fri May 16 21:40:05 2025 +0530
+
+    Fix User authentication error
+
+[33mcommit 398d713a29a721052ea586a9ad3c087944863630[m
+Author: Suraj Verma <iamsuraj406@gmail.com>
+Date:   Fri May 16 21:28:50 2025 +0530
+
+    Fix User authentication error
+
+[33mcommit 43fe6f9e76c37f61c8209b3f236d728e72382ad9[m
+Author: Suraj Verma <iamsuraj406@gmail.com>
+Date:   Fri May 16 19:43:18 2025 +0530
+
+    Add user authentication
+
+[33mcommit 2faf7b9cc4f9c8a4622fb66f8df0a0d8ed6d810b[m
+Author: Suraj Verma <iamsuraj406@gmail.com>
+Date:   Mon Apr 28 22:16:44 2025 +0530
+
+    Better UI and add Cart Option
+
+[33mcommit 3e48a03d6a71286dda2fbf7d8978615034640c98[m
+Author: Suraj Verma <iamsuraj406@gmail.com>
+Date:   Sat Apr 19 23:33:40 2025 +0530
+
+    Foodie website

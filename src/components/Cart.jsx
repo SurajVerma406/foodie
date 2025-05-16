@@ -1,17 +1,20 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
-import React, { useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import myContext from '../context/myContext';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const context = useContext(myContext);
     const { cart, user, removeAllItemsFromCart, removeFromCart } = context;
-    const userCart = cart[user?.$id] || [];
     const deliveryCharge = 80;
 
-    const totalPrice = () => {
+    const userCart = useMemo(() => {
+        return cart[user?.$id] || [];
+    }, [cart, user?.$id]);
+
+    const totalPrice = useCallback(() => {
         return userCart.reduce((acc, item) => acc + Number(item.price), 0);
-    };
+    }, [userCart]);
 
     const discount = (totalPrice() * 0.15).toFixed(2);
     useEffect(() => { }, [totalPrice]);

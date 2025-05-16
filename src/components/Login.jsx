@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import myContext from '../context/myContext';
