@@ -77,7 +77,7 @@ const ContextState = (props) => {
     // Google Auth
     const googleAuth = async () => {
         try {
-            await account.createOAuth2Session("google", "https://surajverma406.github.io/foodie", "https://surajverma406.github.io/foodie/login");
+            await account.createOAuth2Session("google", "https://surajverma406.github.io", "https://surajverma406.github.io/login");
         } catch (error) {
             console.error(error.message);
             errorFunc("Login failed. Please try again.!");
@@ -87,7 +87,7 @@ const ContextState = (props) => {
     // GitHub Auth
     const githubAuth = async () => {
         try {
-            await account.createOAuth2Session("github", "https://surajverma406.github.io/foodie", "https://surajverma406.github.io/foodie/login");
+            await account.createOAuth2Session("github", "https://surajverma406.github.io", "https://surajverma406.github.io/login");
         } catch (error) {
             console.error(error.message);
             errorFunc("Login failed. Please try again.!");
