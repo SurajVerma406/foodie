@@ -1,12 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const About = () => {
     const location = useLocation();
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [location.pathname]);
 
     return (
         <section className={`text-white ${location.pathname === '/' ? 'py-5 px-5 bg-slate-800' : 'py-20 px-5 bg-slate-900'}`}>

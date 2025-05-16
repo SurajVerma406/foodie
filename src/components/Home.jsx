@@ -9,23 +9,22 @@ import About from './About';
 
 const Home = () => {
     return (
-        <section className="poppins text-whitebg-gray-900">
+        <>
+            <section className="poppins text-whitebg-gray-900">
 
-            <div className="bg-pizza relative h-[33rem] sm:h-screen w-full pt-20">
-                <div className="fastFood absolute left-10 top-40">
-                    <Burger />
+                <div className="bg-pizza relative h-[33rem] sm:h-screen w-full pt-20">
+                    <div className="fastFood absolute left-10 top-40">
+                        <Burger />
+                    </div>
                 </div>
-            </div>
 
-            <Discount />
-            <Menu />
-            <About />
-            <BookTable />
-            <Carasoul />
-
-
-
-        </section >
+                <Discount />
+                <Menu />
+                <About />
+                <BookTable />
+                <Carasoul />
+            </section >
+        </>
     );
 };
 

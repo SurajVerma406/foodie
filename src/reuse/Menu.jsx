@@ -1,12 +1,12 @@
-import { Icon } from '@iconify/react/dist/iconify.js';
-
-import { useLocation, useNavigate } from 'react-router-dom';
 import React, { useContext, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import { Icon } from '@iconify/react/dist/iconify.js';
 import myContext from '../context/myContext';
 
 const Menu = () => {
     const context = useContext(myContext);
-    const { cart, addMenu, removeFromCart } = context;
+    const { cart, addIntoCart, removeFromCart, user } = context;
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -36,11 +36,11 @@ const Menu = () => {
                 navigate("/menu");
             }, 2000);
         }
-    }
+    };
 
-    useEffect(() => {
-        // if (location.pathname === "/menu") {window.scrollTo(0, 0);}
-    }, [location.pathname, cart]);
+    const userCart = cart[user?.$id] || [];
+
+    useEffect(() => {}, [location.pathname, cart]);
 
     return (
         <section className={`text-white ${location.pathname === '/' ? 'py-20 px-5' : 'py-20 md:py-40 px-5'}`}>
@@ -56,35 +56,37 @@ const Menu = () => {
 
             <div className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
-                    menu?.filter((menu) => {
-                        return (
-                            category === 'All' || menu.heading.includes(category))
-                    }).slice(0, location.pathname !== "/menu" ? 6 : menu.length).map((menu, index) => {
+                    menu?.filter(menu => (
+                        category === 'All' || menu.heading.includes(category)
+                    )).slice(0, location.pathname !== "/menu" ? 6 : menu.length).map((menu, index) => {
+                        const isInCart = userCart.find(item => item.heading === menu.heading);
+
                         return (
                             <div key={index} className="border border-transparent rounded-2xl overflow-hidden bg-[#222831] h-full">
                                 <div className="menuDiv bg-slate-600 h-60 w-full flex justify-center items-center rounded-es-[45px] rounded-ee-[45px]">
                                     <img className='w-44 transition-all select-none' src={menu.image} alt={menu.heading} />
                                 </div>
                                 <div className="flex flex-col justify-between p-5 h-fit sm:h-[12rem]">
-                                    <div className="">
+                                    <div>
                                         <h1 className="text-[18px] sm:text-[20px] mb-2 select-none font-semibold">{menu.heading}</h1>
                                         <p className="text-xs sm:text-[15px] sm:leading-snug select-none text-neutral-300">{menu.para}</p>
                                     </div>
 
-                                    <div className="flex justify-between menus-center mt-6">
+                                    <div className="flex justify-between items-center mt-6">
                                         <span className="text-[18px] md:text-[22px] font-semibold">${menu.price}</span>
-                                        <span onClick={() => { (cart.find(item => item.heading === menu.heading)) ? removeFromCart(menu) : addMenu(menu); }} className='flex gap-1 p-2 rounded-md hover:scale-110'>
+                                        <span onClick={() => {
+                                            isInCart ? removeFromCart(menu) : addIntoCart(menu);
+                                        }} className='flex gap-1 p-2 rounded-md hover:scale-110 cursor-pointer'>
                                             {
-                                                cart.find(item => item.heading === menu.heading) ?
+                                                isInCart ?
                                                     <span className="text-white"><Icon icon="gg:remove" width="22" height="22" /></span> :
                                                     <span className="text-yellow-600"><Icon icon="gg:add" width="22" height="22" /></span>
                                             }
                                         </span>
-
                                     </div>
                                 </div>
                             </div>
-                        )
+                        );
                     })
                 }
             </div>
@@ -93,7 +95,7 @@ const Menu = () => {
                 <button onClick={loadItems} type="button" className={`flex justify-center items-center ${location.pathname !== "/" ? "hidden" : "block"} text-xs sm:text-[18px] bg-yellow-500 hover:bg-yellow-700 focus:bg-yellow-700 px-4 py-3 mt-10 w-40 rounded-3xl transition-all`}>
                     <span className={`${load !== "hidden" ? "hidden" : "block"}`}>View More</span>
                     <span className={`${load}`}>
-                        <Icon icon="svg-spinners:ring-resize" width="24" height="24"></Icon>
+                        <Icon icon="svg-spinners:ring-resize" width="24" height="24" />
                     </span>
                 </button>
             </center>
@@ -102,6 +104,7 @@ const Menu = () => {
 };
 
 export default Menu;
+
 
 const menu = [
     {

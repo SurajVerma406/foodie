@@ -5,35 +5,37 @@ import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const context = useContext(myContext);
-    const { cart, removerMenu, removeFromCart } = context;
+    const { cart, user, removeAllItemsFromCart, removeFromCart } = context;
+    const userCart = cart[user?.$id] || [];
     const deliveryCharge = 80;
 
     const totalPrice = () => {
-        return cart.reduce((acc, item) => acc + Number(item.price), 0);
+        return userCart.reduce((acc, item) => acc + Number(item.price), 0);
     };
 
     const discount = (totalPrice() * 0.15).toFixed(2);
     useEffect(() => { }, [totalPrice]);
 
-
     return (
         <div className="poppins bg-slate-900 text-white py-24 sm:py-32 px-5">
-            <aside className={"max-w-screen-lg mx-auto"}>
+            <aside className="max-w-screen-lg mx-auto">
                 <div className="h-full overflow-y-auto chrome-scrollbar">
 
                     <div className="flex justify-between items-center gap-1 border-y border-gray-700 py-1 md:py-3">
                         <div className="flex items-center">
-                            <Link to="/menu" className="text-gray-400 hover:text-white"><Icon icon="ri:arrow-drop-left-line" width="40" height="40" /></Link>
+                            <Link to="/menu" className="text-gray-400 hover:text-white">
+                                <Icon icon="ri:arrow-drop-left-line" width="40" height="40" />
+                            </Link>
                             <p className="font-semibold text-sm md:text-[18px]">Continue Ordering</p>
                         </div>
 
-                        <button type="button" onClick={removerMenu} className='text-gray-400 hover:text-white'>
-                            <span className=""><Icon icon="pajamas:remove-all" width="17" height="17"></Icon></span>
+                        <button type="button" onClick={removeAllItemsFromCart} className='text-gray-400 hover:text-white'>
+                            <Icon icon="pajamas:remove-all" width="17" height="17" />
                         </button>
                     </div>
 
                     {
-                        cart && cart.length > 0 ? cart?.slice().reverse().map((menu, index) => {
+                        userCart && userCart.length > 0 ? userCart.slice().reverse().map((menu, index) => {
                             return (
                                 <div key={index} className="hover:bg-slate-800/20">
                                     <div className="flex justify-between items-center gap-10 h-full py-6">
@@ -47,12 +49,16 @@ const Cart = () => {
 
                                         <div className="flex justify-between items-center gap-3 w-24 h-full">
                                             <p className="text-sm sm:text-xl font-semibold w-10">${menu.price}</p>
-                                            <span onClick={() => removeFromCart(menu)} className="text-gray-400 hover:text-white"><Icon icon="material-symbols:close" width="24" height="24" /></span>
+                                            <span onClick={() => removeFromCart(menu)} className="text-gray-400 hover:text-white">
+                                                <Icon icon="material-symbols:close" width="24" height="24" />
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
-                            )
-                        }) : <img className="mx-auto w-40 sm:w-96 mt-20 sm:mt-10" src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png" alt="empty cart!" />
+                            );
+                        }) : (
+                            <img className="mx-auto w-40 sm:w-96 mt-20 sm:mt-10" src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png" alt="empty cart!" />
+                        )
                     }
                 </div>
 
@@ -61,18 +67,33 @@ const Cart = () => {
                         <div className="order-1 md:order-first">
                             <h1 className="text-xl md:text-2xl mb-4">Cart Totals</h1>
 
-                            <p className="flex justify-between items-center border-b border-gray-700 py-3"><span className="">Total Price</span><span className="">${totalPrice().toFixed(2)}</span></p>
-                            <p className="flex justify-between items-center border-b border-gray-700 py-3"><span className="">Delivery Charges</span><span className="">${cart.length === 0 ? "0.00" : deliveryCharge.toFixed(2)}</span></p>
-                            <p className="flex justify-between items-center border-b border-gray-700 py-3"><span className="">Discount</span><span className="">${discount}</span></p>
-                            <p className="flex justify-between items-center py-3"><span className="">Total</span><span className="">${cart.length === 0 ? "0.00" : ((totalPrice() + deliveryCharge) - discount).toFixed(2)}</span></p>
+                            <p className="flex justify-between items-center border-b border-gray-700 py-3">
+                                <span>Total Price</span>
+                                <span>${totalPrice().toFixed(2)}</span>
+                            </p>
+
+                            <p className="flex justify-between items-center border-b border-gray-700 py-3">
+                                <span>Delivery Charges</span>
+                                <span>${userCart.length === 0 ? "0.00" : deliveryCharge.toFixed(2)}</span>
+                            </p>
+
+                            <p className="flex justify-between items-center border-b border-gray-700 py-3">
+                                <span>Discount</span>
+                                <span>${discount}</span>
+                            </p>
+
+                            <p className="flex justify-between items-center py-3">
+                                <span>Total</span>
+                                <span>${userCart.length === 0 ? "0.00" : ((totalPrice() + deliveryCharge) - discount).toFixed(2)}</span>
+                            </p>
 
                             <button className="px-4 py-2.5 bg-yellow-600 active:bg-yellow-700 mt-5">Proceed to checkout</button>
                         </div>
 
-                        <div className="">
-                            <p className="">Have coupon ?</p>
-                            <form className="flex  mt-3" onSubmit={(e) => e.preventDefault()}>
-                                <input type="text" name="" id="" placeholder='Coupon code' className="w-full px-4 py-2.5 bg-slate-800 outline-none lowercase" />
+                        <div>
+                            <p>Have coupon ?</p>
+                            <form className="flex mt-3" onSubmit={(e) => e.preventDefault()}>
+                                <input type="text" placeholder="Coupon code" className="w-full px-4 py-2.5 bg-slate-800 outline-none lowercase" />
                                 <button type="submit" className="bg-black w-28 px-4 py-2.5">Apply</button>
                             </form>
                         </div>
@@ -80,7 +101,7 @@ const Cart = () => {
                 </div>
             </aside>
         </div>
-    )
-}
+    );
+};
 
-export default Cart
+export default Cart;
