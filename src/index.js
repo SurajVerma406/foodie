@@ -7,15 +7,15 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import ContextState from './context/ContextState';
 
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <BrowserRouter basename="/foodie">
+    <HashRouter>
         <ContextState>
             <App />
         </ContextState>
-    </BrowserRouter >
+    </HashRouter >
 );
 
 reportWebVitals();

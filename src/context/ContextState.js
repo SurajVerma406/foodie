@@ -66,7 +66,7 @@ const ContextState = (props) => {
                 setUser(null);
                 setTimeout(() => {
                     navigate("/login");
-                }, 1500);
+                }, 2500);
             }
         } catch (error) {
             console.error(error.message);

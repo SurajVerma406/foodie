@@ -22,13 +22,14 @@ import myContext from './context/myContext';
 function App() {
     const location = useLocation();
     const navigate = useNavigate();
-    
+
     const context = useContext(myContext);
     const { user, setUser } = context;
 
     useEffect(() => {
         const getUser = async () => {
             try {
+
                 const response = await account.get();
                 if (response) {
                     localStorage.setItem("userDetails", JSON.stringify(response));
