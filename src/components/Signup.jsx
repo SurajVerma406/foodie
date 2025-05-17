@@ -52,7 +52,7 @@ const Signup = () => {
                         <h1 className="text-3xl sm:text-4xl">Create your account</h1>
                         <p className="sm:text-xl my-2">
                             <span>Have an account? </span>
-                            <a href="/login" className="text-blue-400 hover:underline">Login now</a>
+                            <Link to="/login" className="text-blue-400 hover:underline">Login now</Link>
                         </p>
                     </div>
 

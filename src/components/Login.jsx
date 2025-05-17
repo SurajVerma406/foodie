@@ -10,7 +10,7 @@ const Login = () => {
     const { setUser, Toaster, googleAuth, githubAuth, errorFunc } = context;
 
     const [userInfo, setUserInfo] = useState({ email: "", password: "" });
-    const [togglePassword, setTogglePassword] = useState(false);
+    const [togglePassword, setTogglePassword] = useState(false);    
 
     // toggle password
     const togglePass = () => setTogglePassword(!togglePassword);
@@ -48,7 +48,7 @@ const Login = () => {
                         <h1 className="text-3xl sm:text-4xl">Log in to your account</h1>
                         <p className="sm:text-xl my-2">
                             <span className="">Don't have an account? </span>
-                            <a href="/signup" className="text-blue-400 hover:underline">Sign Up</a>
+                            <Link to="/signup" className="text-blue-400 hover:underline">Sign Up</Link>
                         </p>
                     </div>
 
