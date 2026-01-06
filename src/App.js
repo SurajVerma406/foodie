@@ -18,6 +18,8 @@ import account from './appwrite/appWrieConfig';
 import { useContext, useEffect } from 'react';
 import Signup from './components/Signup';
 import myContext from './context/myContext';
+import TermsAndCondition from './components/TermsAndCondition';
+import ResetPassword from './components/ResetPassword';
 
 function App() {
     const location = useLocation();
@@ -29,8 +31,8 @@ function App() {
     useEffect(() => {
         const getUser = async () => {
             try {
-
                 const response = await account.get();
+
                 if (response) {
                     localStorage.setItem("userDetails", JSON.stringify(response));
                     setUser(response);
@@ -38,12 +40,14 @@ function App() {
                 else {
                     localStorage.setItem("userDetails", null);
                     setUser(null);
+                    if (location.pathname === "/reset-password") return;
                     navigate("/login");
                 }
             } catch (error) {
                 console.error(error.message);
                 localStorage.setItem("userDetails", null);
                 setUser(null);
+                if (location.pathname === "/reset-password") return;
                 navigate("/login");
             }
         }
@@ -68,6 +72,8 @@ function App() {
                         </>
                     ) : null
                 }
+                <Route path='/term-conditions' element={<TermsAndCondition />} />
+                <Route path='/reset-password' element={<ResetPassword />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/signup' element={<Signup />} />
             </Routes>

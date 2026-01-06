@@ -6,8 +6,11 @@ import { useNavigate } from 'react-router-dom';
 
 const ContextState = (props) => {
     const navigate = useNavigate();
+    
     const [cart, setCart] = useState(JSON.parse(window.localStorage.getItem("cart")) || {});
     const [user, setUser] = useState(JSON.parse(window.localStorage.getItem("userDetails")) || null);
+    const [popup, setPopup] = useState(false);
+
 
     // Add item into user-wise cart
     const addIntoCart = (menu) => {
@@ -107,8 +110,8 @@ const ContextState = (props) => {
     return (
         <myContext.Provider value={{
             Toaster,
-            cart, user,
-            setUser,
+            cart, user, popup,
+            setUser, setPopup,
             addIntoCart, removeAllItemsFromCart, removeFromCart,
             googleAuth, githubAuth, logout, navigate,
             successFunc, errorFunc

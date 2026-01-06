@@ -43,7 +43,7 @@ body {
 }
 
 .bg-pizza {
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url('/src/Images/bg/photo-1543353071-10c8ba85a904.jpeg') no-repeat 50% center/cover;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url('/src/Images/front-view-fastfood.jpg') no-repeat 50% 75%/cover;
 }
 
 .menuDiv:hover img {
@@ -86,7 +86,7 @@ button.slick-arrow.slick-prev {
     }
 
     .bg-pizza {
-        background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url('/src/Images/bg/photo-1543353071-10c8ba85a904.jpeg') no-repeat 100% center/cover;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url('/src/Images/front-view-fastfood.jpg') no-repeat 85% center/cover;
     }
 }
 

@@ -8,7 +8,7 @@ import { ID } from 'appwrite';
 const Signup = () => {
     const navigate = useNavigate();
     const context = useContext(myContext);
-    const { setUser, Toaster, errorFunc, googleAuth, githubAuth } = context;
+    const { setUser, Toaster, successFunc, errorFunc, googleAuth, githubAuth } = context;
 
     const [togglePassword, setTogglePassword] = useState(false);
     const [userInfo, setUserInfo] = useState({ name: "", email: "", password: "" });
@@ -20,19 +20,19 @@ const Signup = () => {
     const registerUser = async (e) => {
         e.preventDefault();
 
-        console.log(userInfo);
-
         try {
             const response = await account.create(ID.unique(), userInfo.email, userInfo.password, userInfo.name);
 
             if (response) {
                 await account.createEmailPasswordSession(userInfo.email, userInfo.password);
                 const userResponse = await account.get();
-                setUser(userResponse);
-                localStorage.setItem("userDetails", JSON.stringify(userResponse));
-                navigate("/");
+                if (userResponse) {
+                    successFunc("Signed in successfully.");
+                    setUser(userResponse);
+                    localStorage.setItem("userDetails", JSON.stringify(userResponse));
+                    navigate("/");
+                }
             }
-            localStorage.getItem("userDetails");
         } catch (error) {
             console.error(error.message);
             errorFunc(error.message.split(":")[1]?.trim() || error.message);
@@ -82,7 +82,7 @@ const Signup = () => {
                         </div>
 
                         <div>
-                            <input onChange={onchange} type="text" name="name" className="block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500 rounded-lg" placeholder="Full name" required />
+                            <input onChange={onchange} type="text" name="name" id='name' className="block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500 rounded-lg" placeholder="Full name" autoComplete="name" required />
                         </div>
 
                         <div>
@@ -95,11 +95,14 @@ const Signup = () => {
                             <i onClick={togglePass} className={`${togglePassword ? 'block' : 'hidden'} absolute text-neutral-400 hover:text-neutral-200 text-xl top-2 right-4 bi bi-eye-fill transition-all`}></i>
                         </div>
 
-                        <div className="flex items-baseline gap-3">
-                            <input type="checkbox" />
-                            <Link to="/" className="text-sm font-medium">
-                                I accept the <span className="text-blue-400 hover:underline">Privacy Policy</span> and the <span className="text-blue-400 hover:underline">Terms of Service</span>
-                            </Link>
+                        <div className=" flex items-baseline gap-3">
+                            <input className="relative top-0.5" type="checkbox" required />
+                            <p className="text-sm font-medium">
+                                I accept the
+                                <Link to="/term-conditions" className="text-blue-400 hover:underline"> Privacy Policy </Link>
+                                and the
+                                <Link to="/term-conditions" className="text-blue-400 hover:underline"> Terms of Service </Link>
+                            </p>
                         </div>
 
                         <button type="submit" className="w-fit focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-3 text-center bg-yellow-600 hover:bg-yellow-700 focus:ring-yellow-800 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-yellow-600">
