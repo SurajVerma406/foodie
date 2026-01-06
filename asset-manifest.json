@@ -1,11 +1,10 @@
 {
   "files": {
-    "main.css": "/foodie/static/css/main.2d5ccc6d.css",
-    "main.js": "/foodie/static/js/main.fd617e94.js",
+    "main.css": "/foodie/static/css/main.6acaba88.css",
+    "main.js": "/foodie/static/js/main.d75f30b5.js",
     "static/js/453.d912f5ce.chunk.js": "/foodie/static/js/453.d912f5ce.chunk.js",
     "static/media/f20.png": "/foodie/static/media/f20.42c2c6e850f2f9191c90.png",
     "static/media/f17.png": "/foodie/static/media/f17.ea26ea0590e94937209a.png",
-    "static/media/photo-1543353071-10c8ba85a904.jpeg": "/foodie/static/media/photo-1543353071-10c8ba85a904.640db9b80843e66f0c7e.jpeg",
     "static/media/dine-out.jpg": "/foodie/static/media/dine-out.1fb2eff601669e4db628.jpg",
     "static/media/f27.webp": "/foodie/static/media/f27.4ecaa3fae05c7fa6c6c2.webp",
     "static/media/f11.png": "/foodie/static/media/f11.088152714973ceead3ab.png",
@@ -29,6 +28,7 @@
     "static/media/f24.png": "/foodie/static/media/f24.82581db3aeaf3f6628e1.png",
     "static/media/f8.png": "/foodie/static/media/f8.bbf75915b57d5c41997b.png",
     "static/media/f2.png": "/foodie/static/media/f2.9157aed0d4393c8ed4ab.png",
+    "static/media/front-view-fastfood.jpg": "/foodie/static/media/front-view-fastfood.88a67fa748e592abcc7a.jpg",
     "static/media/f14.png": "/foodie/static/media/f14.113b916e478715d10624.png",
     "static/media/login_desktop.png": "/foodie/static/media/login_desktop.6c73d9f15b019038397f.png",
     "static/media/f10.png": "/foodie/static/media/f10.8aff21c805ed95272aff.png",
@@ -56,12 +56,12 @@
     "static/media/slick.ttf": "/foodie/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/foodie/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/foodie/index.html",
-    "main.2d5ccc6d.css.map": "/foodie/static/css/main.2d5ccc6d.css.map",
-    "main.fd617e94.js.map": "/foodie/static/js/main.fd617e94.js.map",
+    "main.6acaba88.css.map": "/foodie/static/css/main.6acaba88.css.map",
+    "main.d75f30b5.js.map": "/foodie/static/js/main.d75f30b5.js.map",
     "453.d912f5ce.chunk.js.map": "/foodie/static/js/453.d912f5ce.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2d5ccc6d.css",
-    "static/js/main.fd617e94.js"
+    "static/css/main.6acaba88.css",
+    "static/js/main.d75f30b5.js"
   ]
 }
